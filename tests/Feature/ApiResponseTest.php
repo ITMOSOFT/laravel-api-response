@@ -4,10 +4,10 @@ namespace ItmoSoft\ApiResponse\Tests\Feature;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
 use ItmoSoft\ApiResponse\ApiResponseManager;
 use ItmoSoft\ApiResponse\Facades\ApiResponse;
 use ItmoSoft\ApiResponse\Tests\TestCase;
-use InvalidArgumentException;
 
 class ApiResponseTest extends TestCase
 {
@@ -15,14 +15,15 @@ class ApiResponseTest extends TestCase
     {
         $response = ApiResponse::success(['id' => 7], 'Loaded');
 
-        $response->assertOk();
-        $response->assertJson([
+        $this->assertSame(200, $response->getStatusCode());
+
+        $this->assertSame([
             'success' => true,
             'message' => 'Loaded',
             'data' => ['id' => 7],
             'errors' => null,
             'meta' => [],
-        ]);
+        ], $response->getData(true));
     }
 
     public function test_success_response_uses_configured_default_message(): void
