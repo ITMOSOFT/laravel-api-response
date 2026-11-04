@@ -1,0 +1,43 @@
+{
+    "name": "itmosoft/laravel-api-response",
+    "description": "Consistent, configurable JSON API responses for Laravel applications.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "illuminate/contracts": "^12.0 || ^13.0",
+        "illuminate/http": "^12.0 || ^13.0",
+        "illuminate/pagination": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ItmoSoft\\ApiResponse\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ItmoSoft\\ApiResponse\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ItmoSoft\\ApiResponse\\ApiResponseServiceProvider"
+            ],
+            "aliases": {
+                "ApiResponse": "ItmoSoft\\ApiResponse\\Facades\\ApiResponse"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
